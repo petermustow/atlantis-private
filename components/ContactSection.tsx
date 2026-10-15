@@ -28,7 +28,7 @@ export default function ContactSection() {
     <section id="contact" className="section section-alt">
       <div className="wrap split">
         <div className="stack gap-24" style={{ maxWidth: 460 }}>
-          <h2 className="h2">Let&apos;s have a chat</h2>
+          <h2 className="h2">Let&rsquo;s have a chat</h2>
           <p className="soft">
             Whether you are looking to invest, borrow, or simply want to understand your options, we are here to listen.
             A member of our team will get back to you personally within one business day.
@@ -43,7 +43,7 @@ export default function ContactSection() {
         <form className="stack gap-16" onSubmit={(e) => submit(e, { role })} noValidate={false}>
           <div className="form">
             <label className="field">Name<input name="name" type="text" autoComplete="name" required maxLength={120} /></label>
-            <label className="field">Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+            <label className="field">Email<input name="email" type="email" spellCheck={false} autoComplete="email" required maxLength={254} /></label>
             <label className="field">
               I am a
               <select value={role} onChange={(e) => setRole(e.target.value as Role)}>
@@ -58,7 +58,7 @@ export default function ContactSection() {
           </div>
           <div className="row">
             <button type="submit" className="btn" disabled={status === "sending"}>
-              {status === "sending" ? "Sending..." : "Start the conversation"}
+              {status === "sending" ? "Sending…" : "Start the conversation"}
             </button>
             <span className="tiny muted">{ROUTE[role]}</span>
           </div>

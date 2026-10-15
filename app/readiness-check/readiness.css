@@ -43,7 +43,8 @@
 .rc .intro p{margin-top:8px;max-width:60ch}
 .rc .steps-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;font-size:.8rem}
 .rc .steps-strip > span{background:var(--sunk);border-radius:999px;padding:3px 10px;color:var(--muted)}
-.rc fieldset{border:0;margin:0;padding:0}
+.rc fieldset{border:0;margin:0;padding:0;min-width:0}
+.rc legend{padding:0;margin-bottom:8px}
 .rc .block{border-top:1px solid var(--line);margin-top:24px;padding-top:20px;display:flex;flex-direction:column;gap:18px}
 .rc .block>h2{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-text);font-weight:700}
 .rc .q{display:flex;flex-direction:column;gap:8px}
@@ -149,10 +150,12 @@
 
 
 /* Phones: plain lists instead of wide charts */
-.rc .only-narrow{display:none}
+.rc .only-narrow{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.rc .hide-wide{display:none}
 @media (max-width:640px){
   .rc .only-wide{display:none}
-  .rc .only-narrow{display:block}
+  .rc .only-narrow{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;display:block}
+  .rc .hide-wide{display:block}
   .rc .chart-wrap svg{min-width:640px}
 }
 .rc .tl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}

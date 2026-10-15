@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --navy: #14213d;
   --navy-deep: #0b1426;
   --navy-2: #2e3b58;
@@ -109,6 +110,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .latest-item strong { color: #fff; }
 .latest-rates { display: flex; flex-wrap: wrap; gap: 4px 18px; color: #c9ced8; font-size: 13px; }
 .latest-rates strong { color: #fff; }
+.latest-rates, .figure-n, .deal-amount, .kv span:last-child { font-variant-numeric: tabular-nums; }
+.latest-in { position: relative; padding-right: 64px; }
+.latest-pause {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
+  display: grid; place-items: center; background: transparent; border: 0; border-radius: 4px; color: #c9ced8; cursor: pointer;
+}
+.latest-pause:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.latest-pause:focus-visible { outline-color: #fff; }
 
 .site-header { border-bottom: 1px solid var(--line); background: var(--paper); position: relative; z-index: 10; }
 .site-header-in { max-width: var(--wrap); margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
@@ -129,6 +138,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-top: 2px solid var(--gold); border-radius: 0 0 6px 6px; box-shadow: 0 12px 28px rgba(20, 33, 61, 0.12);
   padding: 8px; display: flex; flex-direction: column; gap: 2px;
 }
+.menu[hidden] { display: none; }
 .menu a { text-decoration: none; padding: 12px 14px; border-radius: 4px; display: flex; flex-direction: column; gap: 2px; }
 .menu a:hover { background: var(--sand); }
 .menu .t { font-weight: 600; font-size: 15px; }
@@ -173,7 +183,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .video { position: relative; border-radius: 6px; overflow: hidden; background: var(--navy); min-height: 360px; flex: 1 1 420px; }
 .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; animation: zoom 14s ease-in-out infinite alternate; }
 .video-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,33,61,0.1), rgba(20,33,61,0.85)); }
-.video-time { position: absolute; top: 14px; right: 14px; background: rgba(0,0,0,0.6); color: #fff; font-size: 12px; padding: 3px 8px; border-radius: 3px; }
 .video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: #fff; display: grid; place-items: center; animation: pulse 2.4s ease-out infinite; }
 .video-cap { position: absolute; left: 20px; right: 20px; bottom: 18px; color: #fff; display: flex; flex-direction: column; gap: 4px; }
 @keyframes zoom { from { transform: scale(1.02); } to { transform: scale(1.12); } }
@@ -219,6 +228,7 @@ blockquote { margin: 0; font-family: var(--f-display); font-weight: 600; font-si
   width: 100%; text-align: left; font: inherit; font-size: 18px; font-weight: 600; color: var(--navy); background: transparent;
   border: 0; padding: 20px 0; display: flex; justify-content: space-between; gap: 16px; cursor: pointer;
 }
+.faq button:hover { color: var(--gold-text); }
 .faq p { padding: 0 0 20px; color: var(--soft); max-width: 720px; }
 
 /* Insights */
@@ -270,13 +280,18 @@ blockquote { margin: 0; font-family: var(--f-display); font-weight: 600; font-si
   .brand img { height: 44px; width: auto; }
   /* Compact ticker: drop the label, shorten the rate names, smaller type */
   .latest { font-size: 13px; }
-  .latest-in { padding: 8px 24px; gap: 4px 14px; }
+  .latest-in { padding: 8px 64px 8px 24px; gap: 4px 14px; }
   .latest-tag { display: none; }
   /* Reserve two lines so the rotating item never changes the height of the band */
   .latest-item { flex: 1 1 100%; min-height: 3.1em; }
   .latest-rates { font-size: 12px; gap: 2px 12px; }
   .r-long { display: none; }
   .r-short { display: inline; }
+}
+
+/* The narrowest phones wrap the longest ticker item to three lines */
+@media (max-width: 350px) {
+  .latest-item { min-height: 4.7em; }
 }
 
 @media (max-width: 380px) {

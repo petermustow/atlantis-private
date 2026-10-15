@@ -76,7 +76,7 @@ export default function FundsPage() {
           <div className="stack gap-16">
             <h2 className="h2-md">Fees</h2>
             <p className="soft">Target returns are quoted after our fund management fees, so the returns we show are what we aim to pay you.</p>
-            <p className="soft">Every fee is set out in full in each fund&apos;s Information Memorandum. We take you through them on your first call, and send the Information Memorandum once we have confirmed you are a wholesale investor.</p>
+            <p className="soft">Every fee is set out in full in each fund&rsquo;s Information Memorandum. We take you through them on your first call, and send the Information Memorandum once we have confirmed you are a wholesale investor.</p>
             <div><Link href="#contact" className="btn">Talk to us about fees</Link></div>
           </div>
           <div className="stack gap-16">

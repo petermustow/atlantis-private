@@ -11,7 +11,7 @@ export default function Newsletter() {
         <div className="soft">Our investor newsletter goes out on the first Wednesday of every month, with fund updates and market insights.</div>
       </div>
       <div className="row">
-        <label className="field">Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+        <label className="field">Email<input name="email" type="email" spellCheck={false} autoComplete="email" required maxLength={254} /></label>
         <div className="hp" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
         <button type="submit" className="btn" disabled={status === "sending" || status === "sent"} style={{ alignSelf: "flex-end" }}>
           {status === "sent" ? "Subscribed" : "Subscribe"}
