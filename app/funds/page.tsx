@@ -26,7 +26,7 @@ export default function FundsPage() {
               <p className="soft">{f.desc}</p>
               <ul className="dots">{f.points.map((pt) => <li key={pt}>{pt}</li>)}</ul>
               <GatedFundFigures slug={f.slug} min={f.min} income={f.income} compact />
-              <div><Link href={`/funds/${f.slug}`} className="link-strong">View fund details</Link></div>
+              <div><Link href={`/funds/${f.slug}`} className="link-strong link-block">View fund details</Link></div>
             </div>
           ))}
         </div>

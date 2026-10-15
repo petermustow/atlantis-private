@@ -66,7 +66,7 @@ export default function Home() {
               </p>
               <div className="row">
                 <Link href="/readiness-check" className="btn">See how ready you are to invest</Link>
-                <RoleLink role="Investor" className="link-strong">or talk to us about your goals</RoleLink>
+                <RoleLink role="Investor" className="link-strong link-block">or talk to us about your goals</RoleLink>
               </div>
             </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
         <div className="wrap stack gap-32">
           <div className="row between">
             <h2 className="h2">Projects we have helped make happen</h2>
-            <Link href="/settled-deals" className="link-strong">View all settled deals</Link>
+            <Link href="/settled-deals" className="link-strong link-block">View all settled deals</Link>
           </div>
           <div className="grid">
             {deals.map((d) => <DealCard key={d.amount + d.purpose} deal={d} />)}
@@ -164,7 +164,7 @@ export default function Home() {
         <div className="wrap stack gap-32">
           <div className="row between">
             <h2 className="h2">The people you will be working with</h2>
-            <Link href="/about" className="link-strong">More about us</Link>
+            <Link href="/about" className="link-strong link-block">More about us</Link>
           </div>
           <div className="team-grid">
             {team.map((p) => (
@@ -181,7 +181,7 @@ export default function Home() {
                 {p.points && p.points.length > 0 && (
                   <ul className="dots small">{p.points.map((pt) => <li key={pt}>{pt}</li>)}</ul>
                 )}
-                <a href={p.li} target="_blank" rel="noopener noreferrer" className="link-strong small">View on LinkedIn</a>
+                <a href={p.li} target="_blank" rel="noopener noreferrer" className="link-strong link-block small">View on LinkedIn</a>
               </div>
             ))}
           </div>

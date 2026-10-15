@@ -30,6 +30,15 @@ describe("readiness report", () => {
     expect(r.rcCumul).toBe("");
   });
 
+  it("gives phones plain lists, and only shows the income list to people who may see returns", () => {
+    const ok = run({ country: "au", wholesale: "cert", amount: 500000 });
+    expect(ok.rcTimelineRows.length).toBeGreaterThan(3);
+    expect(ok.rcOptions.length).toBe(4);
+    const no = run({ country: "au", wholesale: "no", amount: 300000 });
+    expect(no.rcTimelineRows.length).toBeGreaterThan(3);
+    expect(no.rcOptions).toEqual([]);
+  });
+
   it("counts dates from the day of the check and does not drift", () => {
     const r = run({ country: "au", wholesale: "cert", amount: 500000, when: "30" });
     expect(r.rcDate).toBe("15 October 2026");

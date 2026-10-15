@@ -11,6 +11,7 @@ pnpm install
 pnpm dev                 # http://localhost:3000
 pnpm lint && pnpm typecheck && pnpm test && pnpm build
 pnpm check:placeholders  # lists the [bracketed placeholders] still in the content
+pnpm check:responsive    # after a build: no sideways scroll, 44px touch targets, 16px fields at 320 to 1280px
 ```
 
 ## Where things live
@@ -39,6 +40,15 @@ pnpm check:placeholders  # lists the [bracketed placeholders] still in the conte
   No confirmation email is promised to the visitor.
 - **Ticker:** values are typed into `content/ticker.json` by hand, with a review date.
 - **Staging and previews** send `noindex` and a disallow-all `robots.txt`.
+
+## Phones and tablets
+
+- Below 960px the header becomes a Menu button with a panel. The ticker shrinks to two short lines.
+- Buttons, links and form fields are at least 44px tall on touch screens, and fields are 16px so
+  iPhone Safari does not zoom in. The readiness report swaps wide charts for plain lists under 640px.
+- `pnpm check:responsive` loads every page at 320, 375, 768 and 1280px and fails on overflow, small
+  targets or small fields. CI runs it on every pull request. It uses Chromium, so also open the
+  preview on a real iPhone and Android phone before launch.
 
 ## Release flow
 

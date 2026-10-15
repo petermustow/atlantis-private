@@ -238,8 +238,8 @@ export default function ReadinessCheck() {
 }
 
 // The SVG charts are built on the server from our own numbers. No visitor text is placed in them.
-const Svg = ({ html, label }: { html: string; label: string }) => (
-  <div className="chart-wrap" role="img" aria-label={label} dangerouslySetInnerHTML={{ __html: html }} />
+const Svg = ({ html, label, wide }: { html: string; label: string; wide?: boolean }) => (
+  <div className={`chart-wrap${wide ? " only-wide" : ""}`} role="img" aria-label={label} dangerouslySetInnerHTML={{ __html: html }} />
 );
 
 function ReportView({ r, onEdit, onNew }: { r: Report; onEdit: () => void; onNew: () => void }) {
@@ -285,7 +285,14 @@ function ReportView({ r, onEdit, onNew }: { r: Report; onEdit: () => void; onNew
             <section className="r-sec">
               <h2>Your timeline</h2>
               <p className="lead muted">Each bar shows how long a step usually takes. The paler part shows how long it can take if things are slower. Steps for paperwork can often run side by side, so many investors finish sooner.</p>
-              <Svg html={r.rcTimeline} label="Timeline of steps and expected durations" />
+              <Svg wide html={r.rcTimeline} label="Timeline of steps and expected durations" />
+              <ol className="tl-list only-narrow" aria-label="Steps and expected durations">
+                {r.rcTimelineRows.map((s: { n: string; d: string; done: boolean; next: boolean; income: boolean }) => (
+                  <li key={s.n} className={s.done ? "done" : s.next ? "is-next" : s.income ? "income" : ""}>
+                    <b>{s.n}</b><span>{s.next ? `Next step. ${s.d}` : s.d}</span>
+                  </li>
+                ))}
+              </ol>
               <p style={{ fontSize: ".9rem" }}><b>Next step:</b> {r.rcNextName}. {r.rcNextDesc}</p>
             </section>
             <section className="r-sec">
@@ -347,9 +354,19 @@ function ReportView({ r, onEdit, onNew }: { r: Report; onEdit: () => void; onNew
                 <p className="muted" style={{ fontSize: ".8rem" }}>Rounded up to the nearest $5,000. Based on the target rate, which is not guaranteed.</p></div>
             )}
             <div className="eyebrow" style={{ marginTop: 6 }}>Yearly income by option</div>
-            <Svg html={r.rcBars} label="Yearly income by option" />
+            <Svg wide html={r.rcBars} label="Yearly income by option" />
+            <ul className="opt-bars only-narrow" aria-label="Yearly income by option">
+              {r.rcOptions.map((o: { n: string; rate: number; yr: string; pct: number; focus: boolean; td: boolean }) => (
+                <li key={o.n} className={o.focus ? "on" : ""}>
+                  <div className="ob-top"><span>{o.n}</span><b>{o.yr}</b></div>
+                  <div className="ob-bar"><span style={{ width: `${o.pct}%` }} /></div>
+                  <small>{o.rate}% p.a. {o.td ? "(comparison)" : "target"}</small>
+                </li>
+              ))}
+            </ul>
             <p className="muted" style={{ fontSize: ".85rem" }}>Higher target returns come with higher risk. The 2nd Mortgage Fund is repaid after the first mortgage, so it carries more risk than the 1st Mortgage Fund. The Liquidity Fund pays less in return for access with 30 days&apos; notice.</p>
             <div className="eyebrow" style={{ marginTop: 6 }}>Your income building up, month by month</div>
+            <p className="muted only-narrow" style={{ fontSize: ".8rem" }}>Swipe sideways to see the whole chart.</p>
             <Svg html={r.rcCumul} label="Income building up over the term" />
             <p className="muted" style={{ fontSize: ".8rem" }}>{r.rcEarnFoot}</p>
           </section>

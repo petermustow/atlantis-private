@@ -24,7 +24,8 @@ export default function Ticker() {
         <span className="latest-rates">
           {ticker.rates.map((r) => (
             <span key={r.label}>
-              {r.label} <strong>{r.value}</strong>
+              <span className="r-long">{r.label}</span>
+              <span className="r-short">{r.short}</span> <strong>{r.value}</strong>
             </span>
           ))}
         </span>
