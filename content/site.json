@@ -1,0 +1,20 @@
+{
+  "name": "Atlantis Private",
+  "tagline": "We work with you, for you",
+  "phone": "(03) 7050 7030",
+  "phoneHref": "tel:+61370507030",
+  "email": "info@atlantisprivate.com",
+  "followUpName": "Aryan",
+  "linkedin": "https://www.linkedin.com/company/atlantis-private/",
+  "offices": [
+    { "city": "Melbourne", "lines": ["Level 9, 470 Collins Street", "Melbourne VIC 3000"] },
+    { "city": "Singapore", "lines": ["133 New Bridge Road, #10-03", "Chinatown Point, Singapore 059413"] }
+  ],
+  "licence": "Atlantis Private is a Corporate Authorised Representative (CAR 001314674) of Brindabella Investment Group Pty Ltd, AFSL 555758. Services are provided to wholesale clients only.",
+  "figures": [
+    { "n": "$462m", "label": "In debt and equity solutions" },
+    { "n": "135", "label": "Transactions" },
+    { "n": "90+", "label": "Clients" }
+  ],
+  "figuresAsAt": "As at [DATE]"
+}

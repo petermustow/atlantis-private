@@ -1,0 +1,61 @@
+{
+  "philosophy": [
+    "Professional property valuations",
+    "Conservative loan to value (LVR) policies",
+    "Thorough borrower due diligence",
+    "Clear repayment and exit strategies",
+    "Active portfolio management and monitoring"
+  ],
+  "risks": [
+    {
+      "title": "What could go wrong",
+      "text": "The main risks are a borrower being unable to repay, property values falling, and getting money back taking longer than expected. Returns are targets, not guarantees, and you could lose some or all of the money you invest."
+    },
+    {
+      "title": "If a borrower falls behind",
+      "text": "We contact the borrower early and work on a plan to get repayments back on track. If that does not work, we can enforce our security and sell the property to recover what is owed. This can take several months, and the fund's income can be affected while it happens."
+    },
+    {
+      "title": "Who gets repaid first",
+      "text": "When a property is sold to repay a loan, the first mortgage is repaid in full before anything goes to a second mortgage. That is why the Senior Secured fund carries less risk than the Enhanced Yield fund, which is repaid only after the first mortgage."
+    },
+    {
+      "title": "Getting your money back",
+      "text": "In our mortgage funds you invest for a fixed term of 1, 2 or 3 years, and your money is returned at the end of the term once the loans behind it are repaid. In the Liquidity Fund you can withdraw with 30 days' notice. [Whether early withdrawal from a fixed term is possible, and on what terms, to be confirmed.]"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Fund management fee",
+      "text": "Charged by the fund manager. Target returns are quoted after this fee.",
+      "value": "[X]% p.a."
+    },
+    {
+      "name": "Lender fees we keep",
+      "text": "Establishment or line fees paid by borrowers that are retained by us rather than passed to the fund.",
+      "value": "[Disclose]"
+    },
+    {
+      "name": "Entry and exit fees",
+      "text": "Any fee to invest in, or withdraw from, a fund.",
+      "value": "[None / X]"
+    }
+  ],
+  "providers": [
+    {
+      "role": "Trustee",
+      "name": "Brindabella Investment Group Pty Ltd",
+      "text": "Holds the fund on behalf of investors and must act in their best interests."
+    },
+    {
+      "role": "Auditor",
+      "name": "[Name]",
+      "text": "Independently checks the fund accounts each year."
+    },
+    {
+      "role": "Custodian",
+      "name": "[Name, if applicable]",
+      "text": "Holds the fund assets separately from our own."
+    }
+  ]
+}

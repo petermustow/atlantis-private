@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Luca Guerra",
+    "photo": "/img/team-luca-guerra.jpg",
+    "role": "Managing Director",
+    "li": "https://www.linkedin.com/in/luca-guerra-a9827589/",
+    "note": "",
+    "bio": "Award winning finance entrepreneur, leading multiple firms with a track record of $750M+ in deals arranged. A proven leader who drives innovation.",
+    "points": []
+  },
+  {
+    "name": "Lyle Rohde",
+    "photo": "/img/team-lyle-rohde.jpg",
+    "role": "Director",
+    "li": "https://www.linkedin.com/in/lyle-rohde-a66431164",
+    "note": "",
+    "bio": "Dynamic business specialist who focuses on investment strategies, client relations and market expansion to drive revenue growth and deliver tailored financial solutions.",
+    "points": []
+  },
+  {
+    "name": "Marc-Arion Wan",
+    "photo": "/img/team-marc-arion-wan.jpg",
+    "role": "Investment Director and General Counsel",
+    "li": "https://www.linkedin.com/in/marc-wan-4b9a5866",
+    "note": "",
+    "bio": "An experienced legal and business professional with expertise in private equity, cross border transactions and regulatory compliance across Asia and the Middle East.",
+    "points": []
+  },
+  {
+    "name": "Ganesh Loganathan",
+    "role": "Legal Advisor",
+    "li": "https://www.linkedin.com/in/ganesh-loganathan-01840090",
+    "note": "",
+    "bio": "Skilled legal advisor with expertise in property, debt recovery, banking and commercial law. A strong advocate with a focus on compliance.",
+    "points": []
+  },
+  {
+    "name": "John Alvarez",
+    "role": "Strategy Director",
+    "li": "https://www.linkedin.com/in/johnalvarez",
+    "note": "",
+    "bio": "Finance leader and investor with $2B+ in deals, fintech success, and a track record of scaling brokerages to $100M+ EV across global markets.",
+    "points": []
+  },
+  {
+    "name": "Aryan Bhattacharya",
+    "photo": "/img/team-aryan-bhattacharya.jpg",
+    "role": "Graduate, Investment Operations",
+    "li": "https://www.linkedin.com/in/aryan-bhattacharya-aa6b6a229",
+    "note": "",
+    "bio": "Supports investor onboarding, loan administration and reporting, helping maintain accurate records and efficient investment operations.",
+    "points": []
+  }
+]

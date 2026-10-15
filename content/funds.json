@@ -1,0 +1,69 @@
+[
+  {
+    "slug": "senior-secured-mortgage-fund",
+    "tag": "FIRST MORTGAGE",
+    "name": "Atlantis Senior Secured Mortgage Fund",
+    "desc": "For investors who value stable income and protecting their capital. The fund lends against Australian residential and commercial property, secured by registered first mortgages.",
+    "points": [
+      "Income paid monthly",
+      "Registered first mortgage security",
+      "Diversified portfolio of property backed loans"
+    ],
+    "income": "Monthly",
+    "min": "$250,000",
+    "security": "Registered first mortgages over Australian property",
+    "term": "Fixed term of 1, 2 or 3 years",
+    "suits": "Investors who want steady monthly income and value protecting their capital.",
+    "strategy": "The fund invests in carefully selected Australian residential and commercial loans, spread across a diversified portfolio. Every loan is secured by a registered first mortgage, so the fund is first in line to be repaid if a property ever has to be sold. Each loan is supported by a professional valuation, a conservative lending policy and a clearly defined exit strategy, and the portfolio is kept below a 70% loan to value ratio. The priority is protecting your capital while paying consistent monthly income.",
+    "risks": [
+      "A borrower may fall behind or be unable to repay",
+      "Property values can fall, reducing the value of the security",
+      "Recovering money through a property sale can take several months",
+      "Your money is committed for the full term"
+    ]
+  },
+  {
+    "slug": "enhanced-yield-opportunity-mortgage-fund",
+    "tag": "SECOND MORTGAGE",
+    "name": "Atlantis Enhanced Yield Opportunity Mortgage Fund",
+    "desc": "For sophisticated investors comfortable with a higher risk profile who are looking for higher income. The fund lends against Australian property, secured by second mortgages.",
+    "points": [
+      "Income paid monthly",
+      "Second mortgage security",
+      "Disciplined credit assessment on every loan"
+    ],
+    "income": "Monthly",
+    "min": "$250,000",
+    "security": "Second mortgages over Australian property",
+    "term": "Fixed term of 1, 2 or 3 years",
+    "suits": "Sophisticated investors comfortable with more risk in return for higher income.",
+    "strategy": "The fund focuses on carefully structured loans secured by registered second mortgages over Australian property, where another lender already holds the first mortgage. Because it is repaid after that first mortgage, it earns a higher return. Every loan goes through disciplined credit assessment and a professional valuation, has a clearly defined repayment plan, and the portfolio is kept below an 80% loan to value ratio.",
+    "risks": [
+      "Second mortgages are repaid only after the first mortgage, so any shortfall falls here first",
+      "A fall in property values has a bigger effect on this fund",
+      "A borrower may fall behind or be unable to repay",
+      "Your money is committed for the full term"
+    ]
+  },
+  {
+    "slug": "liquidity-fund",
+    "tag": "LIQUIDITY",
+    "name": "Liquidity Fund",
+    "desc": "For investors who want regular income without locking their money away for a fixed term. Withdrawals need 30 days' notice, so many investors hold it alongside a fixed term fund.",
+    "points": [
+      "Regular income",
+      "Access with 30 days' notice",
+      "No fixed term"
+    ],
+    "income": "[To be confirmed]",
+    "min": "$50,000",
+    "security": "[To be confirmed]",
+    "term": "No fixed term. Withdraw with 30 days' notice",
+    "suits": "Investors who want regular income while keeping access to their money.",
+    "strategy": "[How the Liquidity Fund invests, to be supplied.]",
+    "risks": [
+      "Withdrawals depend on the fund having cash available, so they can take longer in difficult markets [to be confirmed]",
+      "Returns are targets and are not guaranteed"
+    ]
+  }
+]

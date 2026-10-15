@@ -1,0 +1,52 @@
+[
+  {
+    "title": "FOR BORROWERS",
+    "steps": [
+      {
+        "n": "1",
+        "title": "Have a chat with us",
+        "text": "Tell us about your project. No question is too small."
+      },
+      {
+        "n": "2",
+        "title": "We get to know your project",
+        "text": "We take the time to understand what you are trying to achieve."
+      },
+      {
+        "n": "3",
+        "title": "Terms that work for you",
+        "text": "We agree terms together and explain everything clearly."
+      },
+      {
+        "n": "4",
+        "title": "Settlement and beyond",
+        "text": "Funds are released, and we stay by your side until the end."
+      }
+    ]
+  },
+  {
+    "title": "FOR INVESTORS",
+    "steps": [
+      {
+        "n": "1",
+        "title": "Have a chat with us",
+        "text": "Tell us what you are looking for, at your own pace."
+      },
+      {
+        "n": "2",
+        "title": "Confirm you are eligible",
+        "text": "We check that you qualify as a wholesale investor."
+      },
+      {
+        "n": "3",
+        "title": "We walk you through it",
+        "text": "We share the details and answer every question you have."
+      },
+      {
+        "n": "4",
+        "title": "Invest when you are ready",
+        "text": "No pressure. Once you invest, we keep you updated along the way."
+      }
+    ]
+  }
+]

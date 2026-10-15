@@ -15,7 +15,19 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
       - run: pnpm typecheck
+      - run: pnpm test
       - run: pnpm build
-      - run: pnpm test --passWithNoTests
-      - run: pnpm audit --audit-level=high
+      - run: pnpm audit --prod --audit-level=high
+
+  # A release into production is blocked while any [bracketed placeholder] is still in the content.
+  placeholders:
+    if: github.base_ref == 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-placeholders.mjs --strict

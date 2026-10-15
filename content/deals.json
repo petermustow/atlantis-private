@@ -1,0 +1,23 @@
+[
+  {
+    "amount": "$3.25m",
+    "type": "Commercial and residential property portfolio",
+    "purpose": "Refinance and working capital",
+    "position": "First and second mortgage",
+    "lvr": "80%"
+  },
+  {
+    "amount": "$1.0m",
+    "type": "Commercial property: warehouse",
+    "purpose": "Refinance and equity release",
+    "position": "First mortgage",
+    "lvr": "75%"
+  },
+  {
+    "amount": "$750k",
+    "type": "Commercial property: petrol station",
+    "purpose": "Acquisition",
+    "position": "First mortgage",
+    "lvr": "70%"
+  }
+]
