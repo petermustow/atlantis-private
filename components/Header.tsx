@@ -7,20 +7,24 @@ import { useEffect, useRef, useState } from "react";
 import { menus } from "@/lib/nav";
 import { Chevron } from "./Icons";
 
+type State = { menu: string | null; nav: boolean; path: string };
+
 export default function Header() {
   const pathname = usePathname();
-  // The open menu belongs to the page it was opened on, so it closes by itself on navigation.
-  const [openState, setOpenState] = useState<{ menu: string | null; path: string }>({ menu: null, path: pathname });
-  const open = openState.path === pathname ? openState.menu : null;
-  const setOpen = (menu: string | null) => setOpenState({ menu, path: pathname });
+  // Open menus belong to the page they were opened on, so they close by themselves on navigation.
+  const [st, setSt] = useState<State>({ menu: null, nav: false, path: pathname });
+  const cur = st.path === pathname ? st : { menu: null, nav: false, path: pathname };
+  const open = cur.menu;
+  const navOpen = cur.nav;
+  const set = (patch: Partial<State>) => setSt({ ...cur, ...patch, path: pathname });
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const close = () => setOpenState((s) => ({ ...s, menu: null }));
+    const closeAll = () => setSt((s) => ({ ...s, menu: null, nav: false }));
     const onDown = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) close();
+      if (ref.current && !ref.current.contains(e.target as Node)) closeAll();
     };
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeAll();
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
     return () => {
@@ -30,13 +34,25 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={ref}>
       <div className="site-header-in">
         <Link href="/" className="brand" aria-label="Atlantis Private home">
           <Image src="/img/logo.png" alt="" width={61} height={52} priority />
           <span>Atlantis Private</span>
         </Link>
-        <nav className="nav" aria-label="Main" ref={ref}>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={navOpen}
+          aria-controls="site-nav"
+          onClick={() => set({ nav: !navOpen, menu: null })}
+        >
+          <span className="menu-label">{navOpen ? "Close" : "Menu"}</span>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            {navOpen ? <path d="M4 4l10 10M14 4L4 14" /> : <path d="M3 5h12M3 9h12M3 13h12" />}
+          </svg>
+        </button>
+        <nav className={`nav${navOpen ? " is-open" : ""}`} id="site-nav" aria-label="Main">
           {menus.map((m) => (
             <div className="nav-item" key={m.label}>
               <button
@@ -44,7 +60,7 @@ export default function Header() {
                 className="nav-btn"
                 aria-expanded={open === m.label}
                 aria-controls={`menu-${m.label}`}
-                onClick={() => setOpen(open === m.label ? null : m.label)}
+                onClick={() => set({ menu: open === m.label ? null : m.label })}
               >
                 {m.label}
                 <Chevron />
@@ -52,7 +68,7 @@ export default function Header() {
               {open === m.label && (
                 <div className="menu" id={`menu-${m.label}`}>
                   {m.items.map((it) => (
-                    <Link key={it.label} href={it.href} onClick={() => setOpen(null)}>
+                    <Link key={it.label} href={it.href} onClick={() => set({ menu: null, nav: false })}>
                       <span className="t">{it.label}</span>
                       <span className="d">{it.desc}</span>
                     </Link>
@@ -61,8 +77,8 @@ export default function Header() {
               )}
             </div>
           ))}
-          <Link href="/insights" className="nav-link">Insights</Link>
-          <Link href="/contact" className="btn btn-sm nav-cta">Let&apos;s talk</Link>
+          <Link href="/insights" className="nav-link" onClick={() => set({ menu: null, nav: false })}>Insights</Link>
+          <Link href="/contact" className="btn btn-sm nav-cta" onClick={() => set({ menu: null, nav: false })}>Let&apos;s talk</Link>
         </nav>
       </div>
     </header>

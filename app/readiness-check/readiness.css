@@ -62,7 +62,7 @@
 .rc .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media (max-width:560px){.rc .grid2,.rc .grid3{grid-template-columns:1fr}}
 .rc label.f{display:flex;flex-direction:column;gap:5px;font-size:.84rem;color:var(--muted);font-weight:500;min-width:0}
-.rc label.f input,.rc label.f select,.rc label.f textarea{border:1px solid var(--line);border-radius:var(--r);padding:9px 11px;background:var(--paper);color:var(--fg);font-size:.95rem;width:100%}
+.rc label.f input,.rc label.f select,.rc label.f textarea{border:1px solid var(--line);border-radius:var(--r);padding:9px 11px;background:var(--paper);color:var(--fg);font-size:16px;min-height:44px;width:100%}
 .rc label.f textarea{min-height:70px;resize:vertical}
 .rc .amount-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .rc .amount-row input[type=range]{flex:1 1 220px;accent-color:var(--brand)}
@@ -147,3 +147,44 @@
 .rc .gg-row .d{font-weight:700;color:var(--brand)}
 .rc .gg-row.on{background:var(--brand-soft)}
 
+
+/* Phones: plain lists instead of wide charts */
+.rc .only-narrow{display:none}
+@media (max-width:640px){
+  .rc .only-wide{display:none}
+  .rc .only-narrow{display:block}
+  .rc .chart-wrap svg{min-width:640px}
+}
+.rc .tl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rc .tl-list li{display:flex;flex-direction:column;gap:2px;padding:10px 0 10px 18px;border-left:3px solid var(--line);position:relative}
+.rc .tl-list li::before{content:"";position:absolute;left:-8px;top:14px;width:13px;height:13px;border-radius:50%;background:var(--brand-2)}
+.rc .tl-list li.done::before{background:var(--good)}
+.rc .tl-list li.is-next::before{background:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.rc .tl-list li.income::before{background:var(--gold)}
+.rc .tl-list li.done b{color:var(--good)}
+.rc .tl-list li span{color:var(--muted);font-size:.88rem}
+.rc .opt-bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.rc .opt-bars li{display:flex;flex-direction:column;gap:4px}
+.rc .ob-top{display:flex;justify-content:space-between;gap:12px;font-size:.92rem}
+.rc .opt-bars li.on .ob-top span{font-weight:700}
+.rc .ob-bar{height:14px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.rc .ob-bar span{display:block;height:100%;background:var(--brand-2);border-radius:3px}
+.rc .opt-bars li.on .ob-bar span{background:var(--brand);box-shadow:inset 0 0 0 2px var(--gold)}
+.rc .opt-bars small{color:var(--muted);font-size:.78rem}
+
+/* Touch screens */
+@media (pointer:coarse){
+  .rc .opt > span{min-height:44px}
+  .rc .rbtn{min-height:44px}
+}
+
+/* Printing the report: leave out the site header, ticker, footer and contact form */
+@media print{
+  .site-header,.latest,.footer,.skip-link,#contact,.rc .bar-actions,.rc .mast{display:none!important}
+  .rc{background:#fff}
+  .rc .rcwrap{max-width:none;padding:0}
+  .rc .report{border:0;padding:0}
+  .rc .only-wide{display:block!important}
+  .rc .only-narrow{display:none!important}
+  .rc .r-sec{break-inside:avoid}
+}

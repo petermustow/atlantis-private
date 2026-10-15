@@ -32,7 +32,7 @@ export default async function FundPage({ params }: Props) {
       <section className="section-sm">
         <div className="wrap split" style={{ gap: 64, alignItems: "flex-start" }}>
           <div className="stack gap-24" style={{ flex: "2 1 460px" }}>
-            <Link href="/funds" className="link-strong small">&larr; All funds</Link>
+            <Link href="/funds" className="link-strong link-block small">&larr; All funds</Link>
             <h2 className="h2-md">At a glance</h2>
             <div className="stack">
               <div className="kv"><span>Security</span><span>{f.security}</span></div>
@@ -55,12 +55,12 @@ export default async function FundPage({ params }: Props) {
               <div className="h3">Fund documents</div>
               <div className="soft">The Information Memorandum sets out the full terms, fees and risks. We will send it to you once we have confirmed you are a wholesale investor.</div>
               <RoleLink role="Investor" className="btn">Request the Information Memorandum</RoleLink>
-              <Link href="/readiness-check" className="link-strong">Or see how ready you are to invest</Link>
+              <Link href="/readiness-check" className="link-strong link-block">Or see how ready you are to invest</Link>
             </div>
           </aside>
         </div>
         <div className="wrap" style={{ marginTop: 40 }}>
-          <Link href="/funds" className="link-strong">Compare all our funds</Link>
+          <Link href="/funds" className="link-strong link-block">Compare all our funds</Link>
         </div>
       </section>
 

@@ -211,7 +211,7 @@ let NOW = new Date();
       return t;
     };
 
-export function buildReport(r) {
+export function buildReport(r): Record<string, any> {
   NOW = new Date(r.created);
     const ra = internalAnswers(r), rs = score(ra); if (r.country === 'os' && rs.tier !== 'X') rs.tier = 'H'; const rT = timeline(r), rR = returns(r), rP = PATHWAYS[r.source], rB = BANDS[rs.tier];
     rT.target = targetStart(r);
@@ -280,11 +280,21 @@ export function buildReport(r) {
       rcNextText: rs.tier === 'X' ? 'Atlantis Private will be in touch to talk through your answers and whether anything may suit you in future.' : 'Atlantis Private will call you within ' + RC.callbackDays + (r.calltime && r.calltime !== 'any' ? ' in the ' + (((OPTS.calltime.find((o) => o[0] === r.calltime) || [])[1]) || '').toLowerCase() : '') + ' for a short intro call. Have this summary handy.',
       rcContactLines: [RC.contactPhone, RC.contactEmail, RC.website, r.country === 'sg' ? RC.addressSG : RC.address]
   };
+  // Plain-text versions of the charts, for phones where the SVGs would be too small to read.
+  report.rcTimelineRows = rT.S.map((s, i) => ({
+    n: s.n,
+    d: s.done ? 'Complete' : s.income ? 'About ' + s.min + ' days after investing' : s.fixed ? 'Set date' : s.min === s.max ? s.min + ' days' : s.min + ' to ' + s.max + ' days',
+    done: !!s.done, next: i === 1, income: !!s.income
+  }));
+  const maxYr = Math.max(...rR.list.map((o) => o.yr));
+  report.rcOptions = rR.list.map((o) => ({
+    n: o.n, rate: o.rate, yr: fmt$(o.yr), pct: Math.max(2, Math.round(o.yr / maxYr * 100)), focus: o === rR.focus, td: o.k === 'td'
+  }));
   // Data minimisation: figures that depend on the target rates leave the server only when
   // this visitor is allowed to see returns.
   if (!report.rcShowReturns) {
     report.rcMoney = []; report.rcBars = ""; report.rcCumul = ""; report.rcEarnLead = "";
-    report.rcEarnFoot = ""; report.rcGoalRows = []; report.rcGoalStatus = ""; report.rcGoalShow = false;
+    report.rcEarnFoot = ""; report.rcOptions = []; report.rcGoalRows = []; report.rcGoalStatus = ""; report.rcGoalShow = false;
   }
   return report;
 }
