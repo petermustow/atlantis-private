@@ -1,13 +1,33 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/manrope";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cinzel/600.css";
-import "@fontsource/cinzel/700.css";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Ticker from "@/components/Ticker";
 import Footer from "@/components/Footer";
+
+// Self-hosted Latin subsets (SIL Open Font License, see app/fonts/README.md). next/font preloads
+// them and matches the fallback font's metrics so text does not jump when they arrive.
+const manrope = localFont({
+  src: "./fonts/manrope-latin-wght-normal.woff2",
+  weight: "200 800",
+  display: "swap",
+  variable: "--font-manrope",
+  adjustFontFallback: "Arial",
+});
+const cormorant = localFont({
+  src: "./fonts/cormorant-garamond-latin-600-normal.woff2",
+  weight: "600",
+  display: "swap",
+  variable: "--font-cormorant",
+  adjustFontFallback: "Times New Roman",
+});
+const cinzel = localFont({
+  src: "./fonts/cinzel-latin-700-normal.woff2",
+  weight: "700",
+  display: "swap",
+  variable: "--font-cinzel",
+  adjustFontFallback: "Times New Roman",
+});
 
 const preview = process.env.VERCEL_ENV !== "production";
 
@@ -23,7 +43,7 @@ export const viewport: Viewport = { themeColor: "#14213D" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU">
+    <html lang="en-AU" className={`${manrope.variable} ${cormorant.variable} ${cinzel.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         <Header />

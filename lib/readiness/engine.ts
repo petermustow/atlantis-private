@@ -113,22 +113,22 @@ let NOW = new Date();
       const tg = T.target; const maxD = Math.max(T.total, 14, tg ? tg.days + 4 : 0); const span = W - L - R; const x = (d) => L + d / maxD * span;
       const wk = Math.ceil(maxD / 7); const step = wk > 16 ? 4 : wk > 8 ? 2 : 1;
       let g = '<svg viewBox="0 0 ' + W + ' ' + h + '"><rect width="' + W + '" height="' + h + '" fill="#ffffff"/>';
-      for (let i = 0; i <= wk; i += step) { const xx = x(i * 7); g += '<line x1="' + xx + '" y1="' + (top - 8) + '" x2="' + xx + '" y2="' + (h - 24) + '" stroke="#ECEAE5"/><text x="' + xx + '" y="' + (top - 27) + '" font-size="11" font-weight="700" fill="#1E2633" text-anchor="middle" font-family="Manrope,Arial,sans-serif">' + (i === 0 ? 'Today' : 'Wk ' + i) + '</text><text x="' + xx + '" y="' + (top - 13) + '" font-size="10" fill="#8A919C" text-anchor="middle" font-family="Manrope,Arial,sans-serif">' + dShort(addDays(i * 7)) + '</text>'; }
-      if (tg) { const tx = x(tg.days); g += '<line x1="' + tx + '" y1="' + (top - 8) + '" x2="' + tx + '" y2="' + (h - 24) + '" stroke="#B8975A" stroke-width="2" stroke-dasharray="5 4"/>'; const lx = tx > W - 176 ? tx - 164 : tx + 6; g += '<rect x="' + lx + '" y="' + (top - 2) + '" width="158" height="20" rx="10" fill="#F4EDE0" stroke="#B8975A" stroke-width="1"/><text x="' + (lx + 79) + '" y="' + (top + 12) + '" font-size="10.5" font-weight="700" text-anchor="middle" fill="#8A6E3B" font-family="Manrope,Arial,sans-serif">Your start: ' + dShort(tg.date) + ' · Wk ' + Math.max(1, Math.ceil(tg.days / 7)) + '</text>'; }
+      for (let i = 0; i <= wk; i += step) { const xx = x(i * 7); g += '<line x1="' + xx + '" y1="' + (top - 8) + '" x2="' + xx + '" y2="' + (h - 24) + '" stroke="#ECEAE5"/><text x="' + xx + '" y="' + (top - 27) + '" font-size="11" font-weight="700" fill="#1E2633" text-anchor="middle" font-family="inherit">' + (i === 0 ? 'Today' : 'Wk ' + i) + '</text><text x="' + xx + '" y="' + (top - 13) + '" font-size="10" fill="#8A919C" text-anchor="middle" font-family="inherit">' + dShort(addDays(i * 7)) + '</text>'; }
+      if (tg) { const tx = x(tg.days); g += '<line x1="' + tx + '" y1="' + (top - 8) + '" x2="' + tx + '" y2="' + (h - 24) + '" stroke="#B8975A" stroke-width="2" stroke-dasharray="5 4"/>'; const lx = tx > W - 176 ? tx - 164 : tx + 6; g += '<rect x="' + lx + '" y="' + (top - 2) + '" width="158" height="20" rx="10" fill="#F4EDE0" stroke="#B8975A" stroke-width="1"/><text x="' + (lx + 79) + '" y="' + (top + 12) + '" font-size="10.5" font-weight="700" text-anchor="middle" fill="#8A6E3B" font-family="inherit">Your start: ' + dShort(tg.date) + ' · Wk ' + Math.max(1, Math.ceil(tg.days / 7)) + '</text>'; }
       T.S.forEach((s, i) => {
         const y = top + i * rowH; const cy = y + rowH / 2; const isNext = i === 1;
-        g += '<text x="0" y="' + (cy - 3) + '" font-size="13" font-weight="600" fill="' + (s.done ? '#1f7a50' : isNext ? '#14213D' : '#1E2633') + '" font-family="Manrope,Arial,sans-serif">' + esc(s.n) + '</text>';
-        g += '<text x="0" y="' + (cy + 13) + '" font-size="11" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + (s.done ? 'Complete' : s.income ? 'About ' + s.min + ' days after investing' : s.fixed ? 'Set date' : s.min === s.max ? s.min + ' days' : s.min + ' to ' + s.max + ' days') + '</text>';
+        g += '<text x="0" y="' + (cy - 3) + '" font-size="13" font-weight="600" fill="' + (s.done ? '#1f7a50' : isNext ? '#14213D' : '#1E2633') + '" font-family="inherit">' + esc(s.n) + '</text>';
+        g += '<text x="0" y="' + (cy + 13) + '" font-size="11" fill="#5B6472" font-family="inherit">' + (s.done ? 'Complete' : s.income ? 'About ' + s.min + ' days after investing' : s.fixed ? 'Set date' : s.min === s.max ? s.min + ' days' : s.min + ' to ' + s.max + ' days') + '</text>';
         if (s.done) { g += '<circle cx="' + x(0) + '" cy="' + cy + '" r="8" fill="#1f7a50"/><path d="M' + (x(0) - 4) + ' ' + cy + ' l3 3 l5 -6" stroke="#fff" stroke-width="2" fill="none"/>';
-          g += '<rect x="' + (x(0) + 14) + '" y="' + (cy - 11) + '" width="86" height="22" rx="11" fill="#e3f2ea"/><text x="' + (x(0) + 57) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" text-anchor="middle" fill="#1f7a50" font-family="Manrope,Arial,sans-serif">You are here</text>'; return; }
+          g += '<rect x="' + (x(0) + 14) + '" y="' + (cy - 11) + '" width="86" height="22" rx="11" fill="#e3f2ea"/><text x="' + (x(0) + 57) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" text-anchor="middle" fill="#1f7a50" font-family="inherit">You are here</text>'; return; }
         const fill = s.income ? '#B8975A' : isNext ? '#14213D' : '#2E3B58';
         const x0 = x(s.s0), x1 = Math.max(x(s.e0), x0 + 6), x2 = Math.max(x(s.s1 + s.max), x1);
         if (x2 > x1) g += '<rect x="' + x0 + '" y="' + (cy - 7) + '" width="' + (x2 - x0) + '" height="14" rx="3" fill="' + fill + '" opacity=".22"/>';
         g += '<rect x="' + x0 + '" y="' + (cy - 7) + '" width="' + (x1 - x0) + '" height="14" rx="3" fill="' + fill + '"/>';
-        if (isNext) g += '<text x="' + (x2 + 8) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" fill="#14213D" font-family="Manrope,Arial,sans-serif">Next step</text>';
-        if (s.income) g += '<text x="' + Math.min(x2 + 8, W - 4) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" fill="#B8975A" text-anchor="' + (x2 + 80 > W ? 'end' : 'start') + '" font-family="Manrope,Arial,sans-serif">$</text>';
+        if (isNext) g += '<text x="' + (x2 + 8) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" fill="#14213D" font-family="inherit">Next step</text>';
+        if (s.income) g += '<text x="' + Math.min(x2 + 8, W - 4) + '" y="' + (cy + 4) + '" font-size="11" font-weight="600" fill="#B8975A" text-anchor="' + (x2 + 80 > W ? 'end' : 'start') + '" font-family="inherit">$</text>';
       });
-      g += '<rect x="' + L + '" y="' + (h - 16) + '" width="18" height="8" rx="2" fill="#2E3B58"/><text x="' + (L + 24) + '" y="' + (h - 9) + '" font-size="10.5" fill="#5B6472" font-family="Manrope,Arial,sans-serif">Typical time</text><rect x="' + (L + 110) + '" y="' + (h - 16) + '" width="18" height="8" rx="2" fill="#2E3B58" opacity=".22"/><text x="' + (L + 134) + '" y="' + (h - 9) + '" font-size="10.5" fill="#5B6472" font-family="Manrope,Arial,sans-serif">Can take up to</text>';
+      g += '<rect x="' + L + '" y="' + (h - 16) + '" width="18" height="8" rx="2" fill="#2E3B58"/><text x="' + (L + 24) + '" y="' + (h - 9) + '" font-size="10.5" fill="#5B6472" font-family="inherit">Typical time</text><rect x="' + (L + 110) + '" y="' + (h - 16) + '" width="18" height="8" rx="2" fill="#2E3B58" opacity=".22"/><text x="' + (L + 134) + '" y="' + (h - 9) + '" font-size="10.5" fill="#5B6472" font-family="inherit">Can take up to</text>';
       return g + '</svg>';
     };
     const returns = (r) => {
@@ -148,10 +148,10 @@ let NOW = new Date();
       const W = 720, L = 200, Rp = 120, rowH = 40, h = R.list.length * rowH + 10; const max = Math.max(...R.list.map((o) => o.yr)); const x = (v) => v / max * (W - L - Rp);
       let g = '<svg viewBox="0 0 ' + W + ' ' + h + '"><rect width="' + W + '" height="' + h + '" fill="#ffffff"/>';
       R.list.forEach((o, i) => { const y = i * rowH + 8; const isF = o === R.focus;
-        g += '<text x="0" y="' + (y + 15) + '" font-size="13" font-weight="' + (isF ? 700 : 500) + '" fill="#1E2633" font-family="Manrope,Arial,sans-serif">' + esc(o.n) + '</text>';
-        g += '<text x="0" y="' + (y + 29) + '" font-size="11" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + o.rate + '% p.a.' + (o.k === 'td' ? ' (comparison)' : ' target') + '</text>';
+        g += '<text x="0" y="' + (y + 15) + '" font-size="13" font-weight="' + (isF ? 700 : 500) + '" fill="#1E2633" font-family="inherit">' + esc(o.n) + '</text>';
+        g += '<text x="0" y="' + (y + 29) + '" font-size="11" fill="#5B6472" font-family="inherit">' + o.rate + '% p.a.' + (o.k === 'td' ? ' (comparison)' : ' target') + '</text>';
         g += '<rect x="' + L + '" y="' + (y + 6) + '" width="' + Math.max(2, x(o.yr)) + '" height="20" rx="3" fill="' + o.c + '"' + (isF ? ' stroke="#B8975A" stroke-width="2"' : '') + '/>';
-        g += '<text x="' + (L + x(o.yr) + 8) + '" y="' + (y + 21) + '" font-size="13" font-weight="600" fill="#1E2633" font-family="Manrope,Arial,sans-serif">' + fmt$(o.yr) + '</text>';
+        g += '<text x="' + (L + x(o.yr) + 8) + '" y="' + (y + 21) + '" font-size="13" font-weight="600" fill="#1E2633" font-family="inherit">' + fmt$(o.yr) + '</text>';
       });
       return g + '</svg>';
     };
@@ -160,19 +160,19 @@ let NOW = new Date();
       const W = 720, H = 250, L = 70, Rp = 150, T = 16, B = 34; const months = R.term * 12;
       const f = R.focus.yr / 12, t = R.td.yr / 12; const maxV = f * months; const x = (m) => L + m / months * (W - L - Rp), y = (v) => T + (1 - v / maxV) * (H - T - B);
       let g = '<svg viewBox="0 0 ' + W + ' ' + H + '"><rect width="' + W + '" height="' + H + '" fill="#ffffff"/>';
-      const ticks = 4; for (let i = 0; i <= ticks; i++) { const v = maxV * i / ticks; g += '<line x1="' + L + '" x2="' + (W - Rp) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="#ECEAE5"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" font-size="10.5" text-anchor="end" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + shortK(v) + '</text>'; }
-      for (let yr = 0; yr <= R.term; yr++) { g += '<text x="' + x(yr * 12) + '" y="' + (H - 12) + '" font-size="10.5" text-anchor="middle" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + (yr === 0 ? 'Start' : 'Year ' + yr) + '</text>'; }
+      const ticks = 4; for (let i = 0; i <= ticks; i++) { const v = maxV * i / ticks; g += '<line x1="' + L + '" x2="' + (W - Rp) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="#ECEAE5"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" font-size="10.5" text-anchor="end" fill="#5B6472" font-family="inherit">' + shortK(v) + '</text>'; }
+      for (let yr = 0; yr <= R.term; yr++) { g += '<text x="' + x(yr * 12) + '" y="' + (H - 12) + '" font-size="10.5" text-anchor="middle" fill="#5B6472" font-family="inherit">' + (yr === 0 ? 'Start' : 'Year ' + yr) + '</text>'; }
       const bw = Math.max(2, (W - L - Rp) / months * 0.62);
       for (let m = 1; m <= months; m++) { const v = f * m; g += '<rect x="' + (x(m) - bw / 2) + '" y="' + y(v) + '" width="' + bw + '" height="' + (y(0) - y(v)) + '" fill="#14213D" opacity="' + (0.18 + 0.5 * m / months) + '"/>'; }
       g += '<polyline points="' + [0, months].map((m) => x(m) + ',' + y(t * m)).join(' ') + '" fill="none" stroke="#C2C6CE" stroke-width="2.5" stroke-dasharray="6 4"/>';
       const fe = f * months, te = t * months;
-      g += '<circle cx="' + x(months) + '" cy="' + y(fe) + '" r="5" fill="#B8975A"/><text x="' + (x(months) + 10) + '" y="' + (y(fe) + 4) + '" font-size="12.5" font-weight="700" fill="#1E2633" font-family="Manrope,Arial,sans-serif">' + fmt$(fe) + '</text><text x="' + (x(months) + 10) + '" y="' + (y(fe) + 19) + '" font-size="10.5" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + esc(PRODUCT_NAME[R.focus.k]) + '</text>';
-      g += '<circle cx="' + x(months) + '" cy="' + y(te) + '" r="4" fill="#C2C6CE"/><text x="' + (x(months) + 10) + '" y="' + (y(te) + 4) + '" font-size="12" fill="#5B6472" font-family="Manrope,Arial,sans-serif">' + fmt$(te) + '</text><text x="' + (x(months) + 10) + '" y="' + (y(te) + 19) + '" font-size="10.5" fill="#5B6472" font-family="Manrope,Arial,sans-serif">Term deposit</text>';
+      g += '<circle cx="' + x(months) + '" cy="' + y(fe) + '" r="5" fill="#B8975A"/><text x="' + (x(months) + 10) + '" y="' + (y(fe) + 4) + '" font-size="12.5" font-weight="700" fill="#1E2633" font-family="inherit">' + fmt$(fe) + '</text><text x="' + (x(months) + 10) + '" y="' + (y(fe) + 19) + '" font-size="10.5" fill="#5B6472" font-family="inherit">' + esc(PRODUCT_NAME[R.focus.k]) + '</text>';
+      g += '<circle cx="' + x(months) + '" cy="' + y(te) + '" r="4" fill="#C2C6CE"/><text x="' + (x(months) + 10) + '" y="' + (y(te) + 4) + '" font-size="12" fill="#5B6472" font-family="inherit">' + fmt$(te) + '</text><text x="' + (x(months) + 10) + '" y="' + (y(te) + 19) + '" font-size="10.5" fill="#5B6472" font-family="inherit">Term deposit</text>';
       return g + '</svg>';
     };
     const ringSVG = (pts, tier) => {
       const c = 2 * Math.PI * 66, col = tier === 'X' ? '#a8291f' : tier === 'A' ? '#1f7a50' : '#14213D';
-      return '<svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="66" fill="none" stroke="#ECEAE5" stroke-width="14"/><circle cx="85" cy="85" r="66" fill="none" stroke="' + col + '" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + (c * pts / 100) + ' ' + c + '" transform="rotate(-90 85 85)"/><text x="85" y="88" text-anchor="middle" font-size="44" font-family="Manrope,Arial,sans-serif" fill="#1E2633">' + pts + '</text><text x="85" y="112" text-anchor="middle" font-size="12" fill="#5B6472" font-family="Manrope,Arial,sans-serif">out of 100</text></svg>';
+      return '<svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="66" fill="none" stroke="#ECEAE5" stroke-width="14"/><circle cx="85" cy="85" r="66" fill="none" stroke="' + col + '" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + (c * pts / 100) + ' ' + c + '" transform="rotate(-90 85 85)"/><text x="85" y="88" text-anchor="middle" font-size="44" font-family="inherit" fill="#1E2633">' + pts + '</text><text x="85" y="112" text-anchor="middle" font-size="12" fill="#5B6472" font-family="inherit">out of 100</text></svg>';
     };
     const todos = (r, a, s) => {
       const t = []; const add = (b, d, c) => t.push({ b: b, d: d, c: c || '' });

@@ -28,6 +28,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // The few site images rarely change. If one is replaced, give it a new file name.
+  images: { minimumCacheTTL: 60 * 60 * 24 * 31 },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

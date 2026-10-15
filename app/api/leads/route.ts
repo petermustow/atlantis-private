@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { sameOrigin, validateLead } from "@/lib/leads";
 
 export const runtime = "nodejs";
+// Forms and the gate answer in milliseconds. A low cap stops a stuck or abused call from running up cost.
+export const maxDuration = 10;
 
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return NextResponse.json({ ok: false, error: "Not allowed." }, { status: 403 });

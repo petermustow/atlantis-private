@@ -4,6 +4,8 @@ import { cleanAnswers } from "@/lib/readiness/input";
 import { sameOrigin } from "@/lib/leads";
 
 export const runtime = "nodejs";
+// Forms and the gate answer in milliseconds. A low cap stops a stuck or abused call from running up cost.
+export const maxDuration = 10;
 
 const emailOk = (s: string) => /^[^\s@]{1,64}@[^\s@]+\.[^\s@]{2,}$/.test(s);
 

@@ -16,9 +16,9 @@
   --good: #1f7a50;
   --warn: #9a5b00;
   --bad: #a8291f;
-  --f-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --f-body: "Manrope Variable", Manrope, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --f-brand: Cinzel, "Trajan Pro", Georgia, serif;
+  --f-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --f-body: var(--font-manrope), system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --f-brand: var(--font-cinzel), "Trajan Pro", Georgia, serif;
   --wrap: 1200px;
 }
 
@@ -272,7 +272,8 @@ blockquote { margin: 0; font-family: var(--f-display); font-weight: 600; font-si
   .latest { font-size: 13px; }
   .latest-in { padding: 8px 24px; gap: 4px 14px; }
   .latest-tag { display: none; }
-  .latest-item { flex: 1 1 100%; }
+  /* Reserve two lines so the rotating item never changes the height of the band */
+  .latest-item { flex: 1 1 100%; min-height: 3.1em; }
   .latest-rates { font-size: 12px; gap: 2px 12px; }
   .r-long { display: none; }
   .r-short { display: inline; }
