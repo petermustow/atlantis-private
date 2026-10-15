@@ -1,0 +1,58 @@
+{
+  "explainers": [
+    {
+      "title": "What is private credit?",
+      "text": "Lending by non bank lenders, funded by investors. Borrowers pay interest, and investors receive income from those repayments."
+    },
+    {
+      "title": "First vs second mortgage",
+      "text": "A first mortgage is repaid first if a property is sold. A second mortgage is repaid after the first, so it carries more risk and usually earns a higher return."
+    },
+    {
+      "title": "How property security works",
+      "text": "Each loan is secured against property. If a borrower cannot repay, the property can be sold to recover the money owed."
+    },
+    {
+      "title": "Private credit vs term deposits",
+      "text": "Term deposits are covered by the government guarantee up to $250,000 per person per bank. Private credit is not guaranteed, which is why it offers higher returns."
+    }
+  ],
+  "risks": [
+    {
+      "title": "What could go wrong",
+      "text": "The main risks are a borrower being unable to repay, property values falling, and getting money back taking longer than expected. Returns are targets, not guarantees, and you could lose some or all of the money you invest."
+    },
+    {
+      "title": "If a borrower falls behind",
+      "text": "We contact the borrower early and work on a plan to get repayments back on track. If that does not work, we can enforce our security and sell the property to recover what is owed. This can take several months, and the fund's income can be affected while it happens."
+    },
+    {
+      "title": "Who gets repaid first",
+      "text": "When a property is sold to repay a loan, the first mortgage is repaid in full before anything goes to a second mortgage. That is why the Senior Secured fund carries less risk than the Enhanced Yield fund, which is repaid only after the first mortgage."
+    },
+    {
+      "title": "Getting your money back",
+      "text": "In our mortgage funds you invest for a fixed term of 1, 2 or 3 years, and your money is returned at the end of the term once the loans behind it are repaid. In the Liquidity Fund you can withdraw with 30 days' notice. [Whether early withdrawal from a fixed term is possible, and on what terms, to be confirmed.]"
+    }
+  ],
+  "posts": [
+    {
+      "tag": "FUND UPDATE"
+    },
+    {
+      "tag": "MARKET COMMENTARY"
+    },
+    {
+      "tag": "NEWS"
+    },
+    {
+      "tag": "FUND UPDATE"
+    },
+    {
+      "tag": "MARKET COMMENTARY"
+    },
+    {
+      "tag": "NEWS"
+    }
+  ]
+}

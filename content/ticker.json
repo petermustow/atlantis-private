@@ -1,0 +1,15 @@
+{
+  "items": [
+    { "label": "Just settled:", "text": "$3.25m portfolio refinance" },
+    { "label": "New insight:", "text": "[Title of our latest market commentary]" },
+    { "label": "Fund update:", "text": "[Monthly distribution paid to investors]" },
+    { "label": "Market news:", "text": "RBA lifts the cash rate to 4.60% at its 29 September meeting" }
+  ],
+  "rates": [
+    { "label": "RBA cash rate", "value": "4.60%" },
+    { "label": "AUD/SGD", "value": "0.8929" },
+    { "label": "AUD/USD", "value": "0.6979" }
+  ],
+  "ratesNote": "Entered by hand. Update the values and review date here until a data source is chosen.",
+  "reviewedOn": "2026-10-15"
+}

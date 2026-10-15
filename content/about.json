@@ -1,0 +1,72 @@
+{
+  "govern": [
+    {
+      "title": "Valuations",
+      "text": "Every property is professionally valued before we lend. Valuations must be no more than 90 days old and supported by comparable sales, and we lend against the lower of the purchase price or the valuation."
+    },
+    {
+      "title": "Conflicts of interest",
+      "text": "Finding loans is kept separate from approving them. Any loan involving a related party needs extra review and formal sign off by our investment committee before any money is released."
+    },
+    {
+      "title": "Credit approval",
+      "text": "Loans are approved by our credit committee, never by one person alone, and every decision is formally minuted."
+    },
+    {
+      "title": "Aligned interests",
+      "text": "Our fund manager invests alongside our investors."
+    }
+  ],
+  "awards": [
+    {
+      "result": "FINALIST",
+      "title": "Commercial Broker of the Year",
+      "org": "The Adviser Australian Broking Awards",
+      "year": "2026"
+    },
+    {
+      "result": "FINALIST",
+      "title": "Commercial Broker of the Year",
+      "org": "The Adviser Australian Broking Awards",
+      "year": "2025"
+    },
+    {
+      "result": "FINALIST",
+      "title": "Best Finance Broker, VIC/TAS",
+      "org": "Better Business Awards",
+      "year": "2025"
+    },
+    {
+      "result": "FINALIST",
+      "title": "Commercial Broker of the Year",
+      "org": "Commercial Finance Awards",
+      "year": "2024"
+    },
+    {
+      "result": "RECIPIENT",
+      "title": "Fast Brokerages",
+      "org": "Australian Broker Awards",
+      "year": "2024 and 2025"
+    },
+    {
+      "result": "NOMINEE",
+      "title": "Commercial Broker of the Year",
+      "org": "The Adviser Australian Broking Awards",
+      "year": "2024"
+    }
+  ],
+  "quotes": [
+    {
+      "who": "borrower",
+      "role": "[Borrower, project type]"
+    },
+    {
+      "who": "investor",
+      "role": "[Wholesale investor]"
+    },
+    {
+      "who": "partner",
+      "role": "[Partner, company]"
+    }
+  ]
+}

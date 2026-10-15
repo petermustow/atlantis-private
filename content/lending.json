@@ -1,0 +1,60 @@
+{
+  "loanTypes": [
+    {
+      "range": "AUD $250K TO $50M",
+      "title": "Commercial property",
+      "text": "Funding to buy, refinance or unlock value in commercial property."
+    },
+    {
+      "range": "AUD $5M TO $100M",
+      "title": "Corporate finance",
+      "text": "Flexible funding for businesses with property or other assets behind them."
+    }
+  ],
+  "why": [
+    {
+      "title": "We move quickly",
+      "text": "When an opportunity will not wait, neither do we. Most loans settle within 7 to 14 days of your first enquiry."
+    },
+    {
+      "title": "We look at the whole picture",
+      "text": "We take the time to understand your project, not just tick boxes."
+    },
+    {
+      "title": "You deal with real people",
+      "text": "You will speak directly with our team from your first call to settlement."
+    }
+  ],
+  "docs": [
+    "Identification for all borrowers and guarantors",
+    "Details of the property or project",
+    "A recent valuation, if you have one",
+    "How you plan to repay the loan (your exit strategy)"
+  ],
+  "notLend": [
+    "Construction and development projects",
+    "[Any other exclusions to be confirmed by our lending team]"
+  ],
+  "approval": [
+    {
+      "n": "1",
+      "title": "Initial review",
+      "text": "Our lending team checks the deal fits our lending criteria."
+    },
+    {
+      "n": "2",
+      "title": "Professional valuation",
+      "text": "Every property is professionally valued, and we lend against the lower of the purchase price or the valuation."
+    },
+    {
+      "n": "3",
+      "title": "Due diligence",
+      "text": "We check the borrower, the security and the plan to repay."
+    },
+    {
+      "n": "4",
+      "title": "Credit committee decision",
+      "text": "The committee approves, declines or sets conditions."
+    }
+  ]
+}

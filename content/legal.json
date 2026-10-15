@@ -1,0 +1,96 @@
+{
+  "terms": {
+    "title": "Terms and Conditions",
+    "note": "This page shows the sections we expect. Final wording will be supplied by our lawyers and compliance adviser before launch.",
+    "intro": "The terms that apply when you use this website. Please read them before relying on anything here.",
+    "sections": [
+      {
+        "h": "About this website",
+        "t": "This website is operated by Atlantis Private Pty Ltd (ABN 68 681 505 359), a Corporate Authorised Representative (CAR 001314674) of Brindabella Investment Group Pty Ltd, AFSL 555758."
+      },
+      {
+        "h": "Wholesale investors only",
+        "t": "[Our investment products are offered to wholesale and sophisticated investors only. Nothing on this site is an offer to retail investors.]"
+      },
+      {
+        "h": "General information only",
+        "t": "[Content is general information and does not take into account your objectives, financial situation or needs. It is not financial, tax or legal advice.]"
+      },
+      {
+        "h": "Target returns and risk",
+        "t": "[Target returns are not guaranteed, and all investments carry risk, including the loss of capital. Read the Information Memorandum before investing.]"
+      },
+      {
+        "h": "Using this website",
+        "t": "[Acceptable use, accuracy of information, and our right to update content.]"
+      },
+      {
+        "h": "Intellectual property",
+        "t": "[Ownership of the content, logos and materials on this site.]"
+      },
+      {
+        "h": "Links to other websites",
+        "t": "[We are not responsible for the content of websites we link to.]"
+      },
+      {
+        "h": "Limitation of liability",
+        "t": "[The limits of our liability, to the extent permitted by law.]"
+      },
+      {
+        "h": "Governing law",
+        "t": "[These terms are governed by the laws of Victoria, Australia. To be confirmed by our lawyers.]"
+      },
+      {
+        "h": "Complaints",
+        "t": "If you are unhappy with our service, please see our Complaints page, which explains how to raise a concern and how to contact the Australian Financial Complaints Authority (AFCA)."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "note": "This is our current Privacy Policy, shown in summary. The developer should load the full approved version, with the two bracketed additions confirmed before launch.",
+    "intro": "How Atlantis Private collects, uses, stores and protects your personal information, in line with the Australian Privacy Principles.",
+    "sections": [
+      {
+        "h": "About this policy",
+        "t": "Atlantis Private Pty Ltd handles personal information in connection with its private credit, property backed lending and investment activities. This policy explains how we collect, hold, use and disclose that information and how you can contact us about privacy. It applies to information about individuals, including people acting for companies, trusts and other organisations. Other lenders, trustees, issuers, advisers and service providers may handle information in their own capacity and under their own privacy policies."
+      },
+      {
+        "h": "Information we collect",
+        "t": "Depending on your relationship with us, we may collect your name, contact details, date of birth, identification and verification information, occupation, authority to act, and information about ownership or control of a business or trust. We may also collect financial circumstances, bank account details, income, assets, liabilities, property and security interests, transaction history, and information supplied in applications, due diligence, correspondence or complaints. We seek sensitive information only where reasonably necessary and with consent, unless the law permits or requires otherwise."
+      },
+      {
+        "h": "How we collect information",
+        "t": "We generally collect information from you through applications, documents, meetings, telephone calls and electronic communications, including the forms on this website. Where appropriate and lawful, we also obtain information from authorised representatives, brokers and introducers, lenders and trustees, professional advisers, public registers, and identity or other verification providers. You may make general enquiries without identifying yourself where practicable. If information required for verification, assessment or legal compliance is not provided, we may be unable to assess an application or provide a service."
+      },
+      {
+        "h": "How we use and disclose information",
+        "t": "We use personal information to respond to enquiries; assess, arrange and administer lending or investment relationships; conduct due diligence and verification; manage accounts, payments and security; communicate with you; resolve complaints; prevent fraud and other financial crime; and meet legal, regulatory and recordkeeping obligations. Where relevant, recipients may include lenders, issuers, trustees, fund administrators and servicers; banks and payment providers; brokers and authorised representatives; valuers, solicitors, accountants and other advisers; identity verification and technology providers; and regulators, courts or law enforcement bodies where disclosure is required or permitted."
+      },
+      {
+        "h": "Overseas handling",
+        "t": "Our activities may involve overseas counterparties or service providers, including providers that store information or provide support outside Australia. Where we disclose personal information overseas, we take the steps required by applicable privacy law to protect that information. [Countries likely to be involved, such as Singapore, to be confirmed.]"
+      },
+      {
+        "h": "Marketing and website information",
+        "t": "If we use your contact details to tell you about our services or opportunities, we do so in accordance with applicable law. You can ask us to stop direct marketing at any time, free of charge, using the contact details below or the unsubscribe option in the communication. [How this website uses cookies and analytics to be added.]"
+      },
+      {
+        "h": "Keeping information secure and current",
+        "t": "We take reasonable steps to protect personal information from misuse, interference, loss and unauthorised access, modification or disclosure, whether it is held by us or by service providers on our behalf. We keep information only as long as it is needed and lawfully required, then destroy or de-identify it. Where a data incident occurs, we assess it and make any notifications required by law."
+      },
+      {
+        "h": "Access and correction",
+        "t": "You may ask us for access to the personal information we hold about you, or ask for a correction. We may need to verify your identity. We do not charge for making a request or for correcting information. If we refuse a request, we explain why and how you can complain."
+      },
+      {
+        "h": "Privacy concerns and complaints",
+        "t": "Please contact us if you have a concern about how we have handled your information. We will look into it and let you know the outcome within a reasonable period. If you are not satisfied with our response, you may contact the Office of the Australian Information Commissioner (OAIC) at www.oaic.gov.au or on 1300 363 992."
+      },
+      {
+        "h": "Contact",
+        "t": "Privacy contact: Luca Guerra, Managing Director, Atlantis Private Pty Ltd. Email: luca.guerra@atlantisprivate.com. Post: Level 9, 470 Collins Street, Melbourne VIC 3000. This policy is available free of charge on request."
+      }
+    ]
+  }
+}

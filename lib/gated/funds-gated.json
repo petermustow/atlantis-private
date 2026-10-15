@@ -1,0 +1,45 @@
+{
+  "senior-secured-mortgage-fund": {
+    "returns": [
+      {
+        "term": "1 year",
+        "rate": "10.00% p.a."
+      },
+      {
+        "term": "2 year",
+        "rate": "11.50% p.a."
+      },
+      {
+        "term": "3 year",
+        "rate": "12.50% p.a."
+      }
+    ],
+    "maxLvr": "70%"
+  },
+  "enhanced-yield-opportunity-mortgage-fund": {
+    "returns": [
+      {
+        "term": "1 year",
+        "rate": "15.00% p.a."
+      },
+      {
+        "term": "2 year",
+        "rate": "18.00% p.a."
+      },
+      {
+        "term": "3 year",
+        "rate": "20.00% p.a."
+      }
+    ],
+    "maxLvr": "80%"
+  },
+  "liquidity-fund": {
+    "returns": [
+      {
+        "term": "Ongoing",
+        "rate": "6.50% p.a."
+      }
+    ],
+    "maxLvr": null
+  }
+}
