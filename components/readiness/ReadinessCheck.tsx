@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { OPTS } from "@/lib/readiness/options";
 import { site } from "@/lib/content";
 
@@ -14,7 +14,7 @@ const short$ = (v: number) =>
 
 function Radio({ name, list, value, onPick, col }: { name: string; list: Opt[]; value: unknown; onPick: (v: string) => void; col?: boolean }) {
   return (
-    <div className={`opts${col ? " col" : ""}`} role="radiogroup">
+    <div className={`opts${col ? " col" : ""}`}>
       {list.map(([v, label, hint]) => (
         <label className="opt" key={v}>
           <input type="radio" name={`rc-${name}`} checked={value === v} onChange={() => onPick(v)} />
@@ -50,12 +50,26 @@ export default function ReadinessCheck() {
   const [view, setView] = useState<"form" | "report">("form");
   const [report, setReport] = useState<Report | null>(null);
   const [err, setErr] = useState("");
+  const [errFields, setErrFields] = useState<string[]>([]);
+  const dirty = useRef(false);
   const [busy, setBusy] = useState(false);
 
   const set = (patch: A) => {
+    dirty.current = true;
     setA((p) => ({ ...p, ...patch }));
     setErr("");
+    setErrFields([]);
   };
+
+  // The form takes a few minutes, so warn before a refresh or back button throws the answers away.
+  useEffect(() => {
+    if (view !== "form") return;
+    const warn = (e: BeforeUnloadEvent) => {
+      if (dirty.current) e.preventDefault();
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [view]);
   const text = (k: string) => String(a[k] ?? "");
   const sg = a.country === "sg";
   const unsure = a.amountUnsure === true;
@@ -66,11 +80,19 @@ export default function ReadinessCheck() {
   async function submit() {
     if (busy) return;
     const missing: string[] = [];
-    if (!text("name").trim()) missing.push("your name");
-    if (!text("phone").trim() && !text("email").trim()) missing.push("a phone number or email");
-    if (!a.source) missing.push("where your money sits today");
-    if (!a.consent) missing.push("the consent box");
-    if (missing.length) return setErr(`Please add ${missing.join(", ")}.`);
+    const fields: string[] = [];
+    if (!text("name").trim()) { missing.push("your name"); fields.push("name"); }
+    if (!text("phone").trim() && !text("email").trim()) { missing.push("a phone number or email"); fields.push("phone", "email"); }
+    if (!a.source) { missing.push("where your money sits today"); fields.push("source"); }
+    if (!a.consent) { missing.push("the consent box"); fields.push("consent"); }
+    if (missing.length) {
+      setErr(`Please add ${missing.join(", ")}.`);
+      setErrFields(fields);
+      // Move keyboard and screen reader focus to the first thing that is missing.
+      const first = { name: "#rc-name", phone: "#rc-phone", email: "#rc-email", source: 'input[name="rc-source"]', consent: "#rc-consent" }[fields[0]];
+      document.querySelector<HTMLElement>(first as string)?.focus();
+      return;
+    }
     setBusy(true);
     try {
       const res = await fetch("/api/readiness", {
@@ -116,34 +138,34 @@ export default function ReadinessCheck() {
 
             <div className="block"><h2>1 · About you</h2>
               <div className="grid2">
-                <label className="f">Full name<input value={text("name")} onChange={(e) => set({ name: e.target.value })} placeholder="e.g. Jane Citizen" autoComplete="name" maxLength={120} /></label>
+                <label className="f">Full name<input id="rc-name" aria-invalid={errFields.includes("name") || undefined} aria-describedby={err ? "rc-err" : undefined} value={text("name")} onChange={(e) => set({ name: e.target.value })} placeholder="e.g. Jane Citizen" autoComplete="name" maxLength={120} /></label>
                 <label className="f">Age range
                   <select value={text("age")} onChange={(e) => set({ age: e.target.value })}>
                     <option value="">Prefer not to say</option>
                     {["Under 40", "40 to 49", "50 to 59", "60 to 65", "Over 65"].map((x) => <option key={x}>{x}</option>)}
                   </select>
                 </label>
-                <label className="f">Mobile<input inputMode="tel" value={text("phone")} onChange={(e) => set({ phone: e.target.value })} placeholder="04xx xxx xxx" autoComplete="tel" maxLength={24} /></label>
-                <label className="f">Email<input type="email" value={text("email")} onChange={(e) => set({ email: e.target.value })} placeholder="name@email.com" autoComplete="email" maxLength={254} /></label>
+                <label className="f">Mobile<input id="rc-phone" aria-invalid={errFields.includes("phone") || undefined} aria-describedby={err ? "rc-err" : undefined} inputMode="tel" value={text("phone")} onChange={(e) => set({ phone: e.target.value })} placeholder="04xx xxx xxx" autoComplete="tel" maxLength={24} /></label>
+                <label className="f">Email<input id="rc-email" aria-invalid={errFields.includes("email") || undefined} aria-describedby={err ? "rc-err" : undefined} type="email" spellCheck={false} value={text("email")} onChange={(e) => set({ email: e.target.value })} placeholder="name@email.com" autoComplete="email" maxLength={254} /></label>
               </div>
-              <div className="q"><div className="q-l">Best time for a call</div><Radio name="calltime" list={OPTS.calltime} value={a.calltime} onPick={(v) => set({ calltime: v })} /></div>
-              <div className="q"><div className="q-l">Where do you live?</div><Radio name="country" list={OPTS.country} value={a.country} onPick={(v) => set({ country: v })} /></div>
-              <div className="q"><div className="q-l">Are you already investing with Atlantis?</div><Radio name="existing" list={OPTS.existing} value={a.existing} onPick={(v) => set({ existing: v })} /></div>
+              <fieldset className="q"><legend className="q-l">Best time for a call</legend><Radio name="calltime" list={OPTS.calltime} value={a.calltime} onPick={(v) => set({ calltime: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">Where do you live?</legend><Radio name="country" list={OPTS.country} value={a.country} onPick={(v) => set({ country: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">Are you already investing with Atlantis?</legend><Radio name="existing" list={OPTS.existing} value={a.existing} onPick={(v) => set({ existing: v })} /></fieldset>
             </div>
 
             <div className="block"><h2>2 · Your money</h2>
-              <div className="q">
-                <div className="q-l">
+              <fieldset className="q">
+                <legend className="q-l">
                   {sg ? "Are you an accredited investor under Singapore rules?" : "Has an accountant issued you a wholesale or sophisticated investor certificate in the last two years?"}{" "}
                   <small>
                     {sg ? "Our investments are open to wholesale and accredited investors only, so this comes first." : "Our investments are open to wholesale investors only, so this comes first."}
                     {a.country === "os" && " If you live outside Australia, our team will confirm what applies where you live."}
                   </small>
-                </div>
+                </legend>
                 <Radio col name="wholesale" list={sg ? OPTS.wholesaleSG : OPTS.wholesale} value={a.wholesale} onPick={(v) => set({ wholesale: v })} />
-              </div>
-              <div className="q">
-                <div className="q-l">Roughly how much are you thinking of investing?</div>
+              </fieldset>
+              <fieldset className="q">
+                <legend className="q-l">Roughly how much are you thinking of investing?</legend>
                 <div className="amount-row">
                   <input type="range" min={50000} max={3000000} step={25000} value={amount} disabled={unsure} aria-label="Investment amount" onChange={(e) => set({ amount: Number(e.target.value) })} />
                   <output className="amount-out">{unsure ? "Not sure" : short$(amount)}</output>
@@ -156,18 +178,18 @@ export default function ReadinessCheck() {
                 <label className="opt" style={{ alignSelf: "flex-start" }}>
                   <input type="checkbox" checked={unsure} onChange={() => set({ amountUnsure: !unsure })} /><span>I am not sure yet</span>
                 </label>
-              </div>
-              <div className="q"><div className="q-l">How would you invest? <small>This decides the paperwork.</small></div><Radio name="entity" list={OPTS.entity} value={a.entity} onPick={(v) => set({ entity: v })} /></div>
-              <div className="q"><div className="q-l">Where does that money sit today? <small>This sets your timeline.</small></div><Radio col name="source" list={OPTS.source} value={a.source} onPick={(v) => set({ source: v })} /></div>
+              </fieldset>
+              <fieldset className="q"><legend className="q-l">How would you invest? <small>This decides the paperwork.</small></legend><Radio name="entity" list={OPTS.entity} value={a.entity} onPick={(v) => set({ entity: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">Where does that money sit today? <small>This sets your timeline.</small></legend><Radio col name="source" list={OPTS.source} value={a.source} onPick={(v) => set({ source: v })} /></fieldset>
               {a.source === "td" && (
                 <div className="sub"><div className="q-l" style={{ fontSize: ".9rem" }}>Term deposit or shares</div>
                   <div className="grid2"><label className="f">Term deposit maturity date (if known)<input type="date" value={text("tdMature")} onChange={(e) => set({ tdMature: e.target.value })} /></label></div></div>
               )}
               {a.source === "equity" && (
-                <div className="sub"><div className="q-l" style={{ fontSize: ".9rem" }}>Do you already have a broker or lender helping you?</div><Radio name="broker" list={OPTS.broker} value={a.broker} onPick={(v) => set({ broker: v })} /></div>
+                <fieldset className="sub"><legend className="q-l" style={{ fontSize: ".9rem" }}>Do you already have a broker or lender helping you?</legend><Radio name="broker" list={OPTS.broker} value={a.broker} onPick={(v) => set({ broker: v })} /></fieldset>
               )}
               {a.source === "super" && (
-                <div className="sub"><div className="q-l" style={{ fontSize: ".9rem" }}>Do you already have a self managed super fund (SMSF)?</div><Radio name="smsf" list={OPTS.smsf} value={a.smsf} onPick={(v) => set({ smsf: v })} /></div>
+                <fieldset className="sub"><legend className="q-l" style={{ fontSize: ".9rem" }}>Do you already have a self managed super fund (SMSF)?</legend><Radio name="smsf" list={OPTS.smsf} value={a.smsf} onPick={(v) => set({ smsf: v })} /></fieldset>
               )}
               {(a.source === "unk" || a.when === "later" || a.when === "unk") && (
                 <div className="sub"><div className="q-l" style={{ fontSize: ".9rem" }}>When would be a good time for us to follow up?</div>
@@ -176,19 +198,19 @@ export default function ReadinessCheck() {
             </div>
 
             <div className="block"><h2>3 · Your goals</h2>
-              <div className="q"><div className="q-l">What matters most to you?</div><Radio col name="motive" list={OPTS.motive} value={a.motive} onPick={(v) => set({ motive: v })} /></div>
+              <fieldset className="q"><legend className="q-l">What matters most to you?</legend><Radio col name="motive" list={OPTS.motive} value={a.motive} onPick={(v) => set({ motive: v })} /></fieldset>
               <div className="q"><div className="q-l">Do you have a monthly income goal? <small>Optional</small></div>
                 <div className="grid2"><label className="f">Monthly income I would like ($)<input inputMode="numeric" value={text("goal")} onChange={(e) => set({ goal: e.target.value })} placeholder="e.g. 4000" maxLength={7} /></label></div></div>
-              <div className="q"><div className="q-l">Who else will be part of the decision?</div><Radio col name="decider" list={OPTS.decider} value={a.decider} onPick={(v) => set({ decider: v })} /></div>
+              <fieldset className="q"><legend className="q-l">Who else will be part of the decision?</legend><Radio col name="decider" list={OPTS.decider} value={a.decider} onPick={(v) => set({ decider: v })} /></fieldset>
             </div>
 
             <div className="block"><h2>4 · Timing and fit</h2>
-              <div className="q"><div className="q-l">When would you like your investment to start?</div>
+              <fieldset className="q"><legend className="q-l">When would you like your investment to start?</legend>
                 <Radio name="when" list={OPTS.when} value={a.when} onPick={(v) => set({ when: v })} />
-                <div className="grid2"><label className="f">Do you have a date in mind? <span style={{ fontWeight: 400 }}>Optional. We will plan your steps around it.</span><input type="date" value={text("startDate")} onChange={(e) => set({ startDate: e.target.value })} /></label></div></div>
-              <div className="q"><div className="q-l">Is anything coming up that affects timing? <small>A deposit maturing, a property sale, retirement</small></div><Radio name="event" list={OPTS.event} value={a.event} onPick={(v) => set({ event: v })} /></div>
-              <div className="q"><div className="q-l">Have you invested in private credit, mortgage funds or other unlisted investments before?</div><Radio col name="experience" list={OPTS.experience} value={a.experience} onPick={(v) => set({ experience: v })} /></div>
-              <div className="q"><div className="q-l">How do you feel about locking money away for a fixed term?</div><Radio col name="risk" list={OPTS.risk} value={a.risk} onPick={(v) => set({ risk: v })} /></div>
+                <div className="grid2"><label className="f">Do you have a date in mind? <span style={{ fontWeight: 400 }}>Optional. We will plan your steps around it.</span><input type="date" value={text("startDate")} onChange={(e) => set({ startDate: e.target.value })} /></label></div></fieldset>
+              <fieldset className="q"><legend className="q-l">Is anything coming up that affects timing? <small>A deposit maturing, a property sale, retirement</small></legend><Radio name="event" list={OPTS.event} value={a.event} onPick={(v) => set({ event: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">Have you invested in private credit, mortgage funds or other unlisted investments before?</legend><Radio col name="experience" list={OPTS.experience} value={a.experience} onPick={(v) => set({ experience: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">How do you feel about locking money away for a fixed term?</legend><Radio col name="risk" list={OPTS.risk} value={a.risk} onPick={(v) => set({ risk: v })} /></fieldset>
               <div className="q"><div className="q-l">Which option would you like illustrated?</div>
                 <div className="grid2">
                   <label className="f">Option
@@ -202,24 +224,24 @@ export default function ReadinessCheck() {
                     </select>
                   </label>
                 </div>
-                {product === "liq" && <p className="muted" style={{ fontSize: ".82rem" }}>The Liquidity Fund has no fixed term. You can withdraw with 30 days&apos; notice. The illustration simply shows the income over the period you choose.</p>}
+                {product === "liq" && <p className="muted" style={{ fontSize: ".82rem" }}>The Liquidity Fund has no fixed term. You can withdraw with 30 days&rsquo; notice. The illustration simply shows the income over the period you choose.</p>}
               </div>
             </div>
 
             <div className="block"><h2>5 · How do you feel so far?</h2>
-              <div className="q"><div className="q-l">Tick anything that applies. <small>There are no wrong answers. It helps us explain things better.</small></div>
-                <Multi name="concerns" list={OPTS.concerns} value={concerns} onPick={(v) => set({ concerns: v })} /></div>
-              <div className="q"><div className="q-l">How did you hear about Atlantis?</div><Radio name="heard" list={OPTS.heard} value={a.heard} onPick={(v) => set({ heard: v })} /></div>
+              <fieldset className="q"><legend className="q-l">Tick anything that applies. <small>There are no wrong answers. It helps us explain things better.</small></legend>
+                <Multi name="concerns" list={OPTS.concerns} value={concerns} onPick={(v) => set({ concerns: v })} /></fieldset>
+              <fieldset className="q"><legend className="q-l">How did you hear about Atlantis?</legend><Radio name="heard" list={OPTS.heard} value={a.heard} onPick={(v) => set({ heard: v })} /></fieldset>
               <label className="f">Anything else on your mind?<textarea value={text("notes")} onChange={(e) => set({ notes: e.target.value })} placeholder="Questions, concerns, anything you would like us to know" maxLength={1000} /></label>
             </div>
 
             <div className="block" style={{ gap: 14 }}>
-              <label className="consent"><input type="checkbox" checked={a.consent === true} onChange={() => set({ consent: !a.consent })} /><span>I agree to Atlantis Private contacting me about investing. I understand this check is general information only and is not financial advice.</span></label>
+              <label className="consent"><input id="rc-consent" aria-invalid={errFields.includes("consent") || undefined} aria-describedby={err ? "rc-err" : undefined} type="checkbox" checked={a.consent === true} onChange={() => set({ consent: !a.consent })} /><span>I agree to Atlantis Private contacting me about investing. I understand this check is general information only and is not financial advice.</span></label>
               <p className="privacy"><b>Your privacy.</b> We collect these details so Atlantis Private can work out whether our investments may suit you, contact you about them and keep a record of your enquiry. Without them we may not be able to help. We share them only with our own team and the service providers who help us run our business. We never sell your information. Our <Link href="/privacy">Privacy Policy</Link> explains how to access or correct your information and how to make a complaint.</p>
               <label className="consent" style={{ background: "var(--sunk)" }}><input type="checkbox" checked={a.updates === true} onChange={() => set({ updates: !a.updates })} /><span>Optional: send me the Atlantis investor newsletter, on the first Wednesday of every month. You can unsubscribe at any time.</span></label>
               <div className="actions-row">
-                <button className="rbtn primary big" type="button" onClick={submit} disabled={busy}>{busy ? "Working it out..." : "Create my summary"}</button>
-                <span className="err" role="alert">{err}</span>
+                <button className="rbtn primary big" type="button" onClick={submit} disabled={busy}>{busy ? "Working it out…" : "Create my summary"}</button>
+                <span className="err" id="rc-err" role="alert">{err}</span>
               </div>
             </div>
           </div>
@@ -238,9 +260,14 @@ export default function ReadinessCheck() {
 }
 
 // The SVG charts are built on the server from our own numbers. No visitor text is placed in them.
-const Svg = ({ html, label, wide }: { html: string; label: string; wide?: boolean }) => (
-  <div className={`chart-wrap${wide ? " only-wide" : ""}`} role="img" aria-label={label} dangerouslySetInnerHTML={{ __html: html }} />
-);
+// On wide screens the SVG is decoration: the same numbers are in the list beside it, which
+// screen readers always get. The month-by-month chart has no list, so it keeps its label.
+const Svg = ({ html, label, wide }: { html: string; label: string; wide?: boolean }) =>
+  wide ? (
+    <div className="chart-wrap only-wide" aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />
+  ) : (
+    <div className="chart-wrap" role="img" aria-label={label} dangerouslySetInnerHTML={{ __html: html }} />
+  );
 
 function ReportView({ r, onEdit, onNew }: { r: Report; onEdit: () => void; onNew: () => void }) {
   return (
@@ -364,9 +391,9 @@ function ReportView({ r, onEdit, onNew }: { r: Report; onEdit: () => void; onNew
                 </li>
               ))}
             </ul>
-            <p className="muted" style={{ fontSize: ".85rem" }}>Higher target returns come with higher risk. The 2nd Mortgage Fund is repaid after the first mortgage, so it carries more risk than the 1st Mortgage Fund. The Liquidity Fund pays less in return for access with 30 days&apos; notice.</p>
+            <p className="muted" style={{ fontSize: ".85rem" }}>Higher target returns come with higher risk. The 2nd Mortgage Fund is repaid after the first mortgage, so it carries more risk than the 1st Mortgage Fund. The Liquidity Fund pays less in return for access with 30 days&rsquo; notice.</p>
             <div className="eyebrow" style={{ marginTop: 6 }}>Your income building up, month by month</div>
-            <p className="muted only-narrow" style={{ fontSize: ".8rem" }}>Swipe sideways to see the whole chart.</p>
+            <p className="muted hide-wide" style={{ fontSize: ".8rem" }}>Swipe sideways to see the whole chart.</p>
             <Svg html={r.rcCumul} label="Income building up over the term" />
             <p className="muted" style={{ fontSize: ".8rem" }}>{r.rcEarnFoot}</p>
           </section>

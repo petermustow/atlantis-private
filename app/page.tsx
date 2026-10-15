@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "@/components/ContactSection";
-import { Play } from "@/components/Icons";
 import RoleLink from "@/components/RoleLink";
 import DealCard from "@/components/DealCard";
 import { deals, funds, howItWorks, site, team } from "@/lib/content";
@@ -16,8 +15,8 @@ export default function Home() {
             <h1 className="h1">We work with you, for you</h1>
             <p className="lead">Lending, private credit and private equity under one roof, with offices in Melbourne and Singapore.</p>
             <div className="row" style={{ marginTop: 8 }}>
-              <Link href="#funds" className="btn">I&apos;m looking to invest</Link>
-              <Link href="#lending" className="btn btn-outline">I&apos;m looking to borrow</Link>
+              <Link href="#funds" className="btn">I&rsquo;m looking to invest</Link>
+              <Link href="#lending" className="btn btn-outline">I&rsquo;m looking to borrow</Link>
             </div>
           </div>
           <Image
@@ -131,8 +130,7 @@ export default function Home() {
           <div className="video" role="img" aria-label="Video placeholder: a two minute introduction from our directors">
             <Image src="/img/directors.jpg" alt="" fill sizes="(max-width: 900px) 100vw, 560px" style={{ objectFit: "cover", objectPosition: "center 30%" }} />
             <div className="video-shade" />
-            <span className="video-time">2:00</span>
-            <span className="video-play"><Play /></span>
+            
             <div className="video-cap">
               <div className="h3" style={{ color: "#fff" }}>Meet Luca, Lyle and Marc</div>
               <div className="small">A two minute introduction from our directors. <span className="placeholder" style={{ color: "var(--navy)" }}>[Video to be filmed]</span></div>

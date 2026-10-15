@@ -101,7 +101,7 @@ export function GateBanner() {
         {g.error && <div className="status-err" role="alert">{g.error}</div>}
       </div>
       <button type="button" className="btn" disabled={!g.agreed || g.loading} onClick={g.reveal}>
-        {g.loading ? "Loading..." : "View returns and terms"}
+        {g.loading ? "Loading…" : "View returns and terms"}
       </button>
     </div>
   );
@@ -152,7 +152,7 @@ export function GatePanel() {
       </label>
       {g.error && <div className="status-err" role="alert">{g.error}</div>}
       <button type="button" className="btn" disabled={!g.agreed || g.loading} onClick={g.reveal}>
-        {g.loading ? "Loading..." : "View target returns"}
+        {g.loading ? "Loading…" : "View target returns"}
       </button>
     </div>
   );

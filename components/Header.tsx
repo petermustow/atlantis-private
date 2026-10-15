@@ -24,7 +24,13 @@ export default function Header() {
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) closeAll();
     };
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeAll();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      // Give focus back to the control that opened the menu, so keyboard users don't lose their place.
+      const opener = ref.current?.querySelector<HTMLElement>('[aria-expanded="true"]');
+      closeAll();
+      opener?.focus();
+    };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
     return () => {
@@ -38,7 +44,7 @@ export default function Header() {
       <div className="site-header-in">
         <Link href="/" className="brand" aria-label="Atlantis Private home">
           <Image src="/img/logo.png" alt="" width={61} height={52} priority />
-          <span>Atlantis Private</span>
+          <span translate="no">Atlantis Private</span>
         </Link>
         <button
           type="button"
@@ -65,8 +71,8 @@ export default function Header() {
                 {m.label}
                 <Chevron />
               </button>
-              {open === m.label && (
-                <div className="menu" id={`menu-${m.label}`}>
+              {
+                <div className="menu" id={`menu-${m.label}`} hidden={open !== m.label}>
                   {m.items.map((it) => (
                     <Link key={it.label} href={it.href} onClick={() => set({ menu: null, nav: false })}>
                       <span className="t">{it.label}</span>
@@ -74,11 +80,11 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
-              )}
+              }
             </div>
           ))}
           <Link href="/insights" className="nav-link" onClick={() => set({ menu: null, nav: false })}>Insights</Link>
-          <Link href="/contact" className="btn btn-sm nav-cta" onClick={() => set({ menu: null, nav: false })}>Let&apos;s talk</Link>
+          <Link href="/contact" className="btn btn-sm nav-cta" onClick={() => set({ menu: null, nav: false })}>Let&rsquo;s talk</Link>
         </nav>
       </div>
     </header>

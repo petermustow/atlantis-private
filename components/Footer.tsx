@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-col">
           <span className="brand">
             <Image src="/img/logo.png" alt="" width={51} height={44} />
-            <span>{site.name}</span>
+            <span translate="no">{site.name}</span>
           </span>
           <span>{site.tagline}</span>
         </div>

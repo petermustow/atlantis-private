@@ -61,12 +61,12 @@ export default function ScenarioForm() {
         <label className="field">Funds needed by<input name="needBy" type="date" /></label>
         <label className="field">Your name<input name="name" autoComplete="name" required maxLength={120} /></label>
         <label className="field">Phone<input name="phone" type="tel" inputMode="tel" autoComplete="tel" maxLength={24} /></label>
-        <label className="field">Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+        <label className="field">Email<input name="email" type="email" spellCheck={false} autoComplete="email" required maxLength={254} /></label>
         <div className="hp" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       </div>
       <div className="row">
         <button type="submit" className="btn" disabled={status === "sending"}>
-          {status === "sending" ? "Sending..." : "Send the scenario"}
+          {status === "sending" ? "Sending…" : "Send the scenario"}
         </button>
         <span className="small muted" aria-live="polite">{lvr}</span>
       </div>

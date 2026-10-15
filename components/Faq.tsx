@@ -12,7 +12,7 @@ export default function Faq({ items }: { items: { q: string; a: string }[] }) {
             {f.q}
             <span aria-hidden="true">{open === i ? "−" : "+"}</span>
           </button>
-          {open === i && <p id={`faq-${i}`}>{f.a}</p>}
+          <p id={`faq-${i}`} hidden={open !== i}>{f.a}</p>
         </div>
       ))}
     </div>
