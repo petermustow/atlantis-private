@@ -4,9 +4,9 @@
   --bg:#F3F1EC; --paper:#ffffff; --sunk:#F8F7F4; --line:#E4E2DC; --fg:#1E2633; --muted:#5B6472;
   --brand:#14213D; --brand-2:#2E3B58; --brand-soft:#EEF0F5; --gold:#B8975A; --gold-soft:#F4EDE0; --gold-text:#8A6E3B;
   --good:#1f7a50; --good-soft:#e3f2ea; --warn:#9a5b00; --warn-soft:#fbefdc; --bad:#a8291f; --bad-soft:#fbe6e3;
-  --f-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-  --f-body:"Manrope Variable",Manrope,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --f-mono:"Manrope Variable",Manrope,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-display:var(--font-cormorant),Georgia,"Times New Roman",serif;
+  --f-body:var(--font-manrope),system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:var(--font-manrope),system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --r:6px;
 }
 .rc,.rc *{box-sizing:border-box}
@@ -15,7 +15,7 @@
 .rc p{margin:0}
 .rc .muted{color:var(--muted)}
 .rc .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.rc .brandname{font-family:Cinzel,"Trajan Pro",Georgia,serif;font-weight:700;letter-spacing:.06em;font-size:1.3rem;color:var(--gold-text);white-space:nowrap}
+.rc .brandname{font-family:var(--font-cinzel),"Trajan Pro",Georgia,serif;font-weight:700;letter-spacing:.06em;font-size:1.3rem;color:var(--gold-text);white-space:nowrap}
 .rc .linkbtn{background:none;border:0;padding:0;color:var(--brand);font-weight:600;cursor:pointer;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-size:.88rem}
 .rc .privacy{font-size:.8rem;color:var(--muted);line-height:1.55;margin-top:-2px}
 .rc .plan-tbl{width:100%;border-collapse:collapse;font-size:.9rem}

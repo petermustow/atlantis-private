@@ -4,6 +4,8 @@ import gated from "@/lib/gated/funds-gated.json";
 import { sameOrigin } from "@/lib/leads";
 
 export const runtime = "nodejs";
+// Forms and the gate answer in milliseconds. A low cap stops a stuck or abused call from running up cost.
+export const maxDuration = 10;
 
 // Wholesale gate. The target returns and terms live only in lib/gated and are returned
 // here after the visitor confirms. They are never part of a pre-built page.
