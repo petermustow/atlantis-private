@@ -39,6 +39,7 @@ export default function Home() {
               <div className="muted">{f.label}</div>
             </div>
           ))}
+          <div className="tiny muted">{site.figuresAsAt}</div>
         </div>
       </section>
 
